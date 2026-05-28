@@ -13,11 +13,9 @@ This repository contains two cooperative tools:
 ```mermaid
 graph TD
     A[1. Browser loads Web Page] -->|Proxied via| B(2. Burp Suite: JS Saver)
-    B -->|Cache Buster| B1[Strips cache headers to force 200 OK responses]
-    B -->|Response Handler| B2[Intercepts, beautifies, and categorizes JS files]
-    B2 -->|Write to disk| C[(3. Local Storage)]
-    B2 -->|HTTP POST| D(4. VS Code: JS Grepper)
-    D -->|Mount folder| E[5. Sidebar Tree View & Workspace]
+    B -->|Writes to| C[(3. Local Storage)]
+    B -->|Streams via HTTP POST| D(4. VS Code: JS Grepper)
+    D -->|Mounts folder in| E[5. Workspace & Sidebar]
 ```
 
 ---
