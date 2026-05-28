@@ -71,21 +71,9 @@ Upon successful completion, you will have:
 ---
 
 ### 3. Install the VS Code Extension
-You can install the extension using the quick script or manually:
+Simply drag and drop the built `vscode-extension/js-grepper-0.2.0.vsix` file into your VS Code window to install it.
 
-#### Option A: Quick Script (macOS/Linux)
-Simply run the installer script inside the extension directory:
-```bash
-bash vscode-extension/install.sh
-```
-Then restart VS Code or open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) and execute `Developer: Reload Window`.
-
-#### Option B: Manual VSIX Install
-1. Open VS Code.
-2. Open the Extensions sidebar (`Cmd+Shift+X` / `Ctrl+Shift+X`).
-3. Click the **three dots** (`...`) in the upper-right corner.
-4. Select **Install from VSIX...**.
-5. Select `vscode-extension/js-grepper-0.2.0.vsix` from your filesystem.
+Alternatively, you can open the Extensions sidebar (`Cmd+Shift+X` / `Ctrl+Shift+X`), click the **three dots** (`...`) in the upper-right corner, select **Install from VSIX...**, and choose the `.vsix` file from your filesystem.
 
 ---
 
@@ -107,12 +95,6 @@ Then restart VS Code or open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`
    - Navigate to any web application.
    - Watch the captured, beautified scripts populate your VS Code workspace and sidebar tree-view in real-time!
    - Perform a global search (`Cmd+Shift+F`) inside VS Code to quickly grep for API routes, tokens, endpoints, or hidden logic across all collected files.
-
----
-
-## 🔒 Security & Privacy Notice
-- **Local Network Only**: All communications between the Burp Suite extension and the VS Code extension happen strictly on `127.0.0.1` (localhost). No data is sent over the internet.
-- **Ignore Local Folders**: Ensure you do not commit your local `js-grepper` or `js_saved` folders to public git repositories, as they contain cached JavaScript files from your active pentesting/research sessions which may contain sensitive vendor endpoints or session details.
 
 ---
 

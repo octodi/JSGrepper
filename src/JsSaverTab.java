@@ -142,7 +142,7 @@ public class JsSaverTab extends JPanel {
             new EmptyBorder(4, 6, 4, 6)));
         vsCodePortField.setToolTipText("Must match jsGrepper.port setting in VS Code");
 
-        JLabel vsHintLbl = makeLabel("  ← run  bash vscode-extension/install.sh  then restart VS Code", false);
+        JLabel vsHintLbl = makeLabel("  ← Drag & drop the built .vsix file into VS Code to install", false);
         vsHintLbl.setForeground(FG_MUTED);
 
         JPanel vsControls = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
