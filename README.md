@@ -11,21 +11,13 @@ This repository contains two cooperative tools:
 ## How It Works (The Pipeline)
 
 ```mermaid
-sequenceDiagram
-    autonumber
-    actor User as Browser / Burp Browser
-    participant Burp as Burp Suite (JS Saver)
-    participant Disk as Local Disk Storage
-    participant VSCode as VS Code (JS Grepper)
-
-    User->>Burp: 1. Requests Web Page (with JS scripts)
-    Note over Burp: Strips If-None-Match & If-Modified-Since<br/>forces 200 OK (no 304s!)
-    Burp->>User: 2. Proxied JS Response received
-    Note over Burp: Intercepts body, beautifies content,<br/>and categorizes by parent navigation host
-    Burp->>Disk: 3. Saves beautified <host>/<file>.js to disk
-    Burp->>VSCode: 4. Streams payload via HTTP POST (JSON)
-    Note over VSCode: Writes to session folder,<br/>adds directory to active workspace
-    VSCode->>User: 5. Populates Sidebar tree-view in real-time
+graph TD
+    A[1. Browser loads Web Page] -->|Proxied via| B(2. Burp Suite: JS Saver)
+    B -->|Cache Buster| B1[Strips cache headers to force 200 OK responses]
+    B -->|Response Handler| B2[Intercepts, beautifies, and categorizes JS files]
+    B2 -->|Write to disk| C[(3. Local Storage)]
+    B2 -->|HTTP POST| D(4. VS Code: JS Grepper)
+    D -->|Mount folder| E[5. Sidebar Tree View & Workspace]
 ```
 
 ---
