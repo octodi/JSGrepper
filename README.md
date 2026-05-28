@@ -43,58 +43,29 @@ sequenceDiagram
 ## Build & Installation
 
 ### Prerequisites
-* **Java Development Kit (JDK) 11** or newer (installed and on your system `PATH`)
-* **VS Code** (or VSCodium)
-* **Burp Suite** (Community or Professional)
+* JDK 11 or newer
+* Burp Suite & VS Code
 
-### 1. Build the Extension Binaries
-Run the included build script to compile the Java project, bundle external dependencies into a fat JAR, and package the VS Code extension into a `.vsix` file:
-
+### Build
+Run the build script in the project root:
 ```bash
-chmod +x build.sh
-./build.sh
+chmod +x build.sh && ./build.sh
 ```
+This generates:
+- `JsSaver.jar` (Burp extension fat JAR)
+- `vscode-extension/js-grepper-0.2.0.vsix` (VS Code extension VSIX)
 
-Upon successful completion, you will have:
-- `JsSaver.jar` — The Burp Suite Extension fat JAR.
-- `vscode-extension/js-grepper-0.2.0.vsix` — The VS Code Extension installer.
-
----
-
-### 2. Install the Burp Suite Extension
-1. Open Burp Suite.
-2. Go to **Extensions** -> **Installed** -> **Add**.
-3. Set Extension Type to **Java**.
-4. Select the built `JsSaver.jar` file from the project root.
-5. Click **Next** to load it. You will see a new **JS Saver** tab appear in the Burp header.
+### Install
+1. **Burp Suite**: Add `JsSaver.jar` in **Extensions** -> **Installed** -> **Add** (Java).
+2. **VS Code**: Drag and drop the built `vscode-extension/js-grepper-0.2.0.vsix` file directly into your VS Code window.
 
 ---
 
-### 3. Install the VS Code Extension
-Simply drag and drop the built `vscode-extension/js-grepper-0.2.0.vsix` file into your VS Code window to install it.
+## Usage
 
-Alternatively, you can open the Extensions sidebar (`Cmd+Shift+X` / `Ctrl+Shift+X`), click the **three dots** (`...`) in the upper-right corner, select **Install from VSIX...**, and choose the `.vsix` file from your filesystem.
-
----
-
-## Usage Guide
-
-1. **Configure VS Code**:
-   - In VS Code, verify the **JS Grepper** icon is visible in your Activity Bar.
-   - By default, it starts a local HTTP listener on port `7777`. If you need to change this, go to Settings and search for `jsGrepper.port`.
-   - Ensure you define your desired session folder via the `jsGrepper.sessionDir` setting (defaults to `~/js-grepper`).
-
-2. **Configure Burp**:
-   - Go to the **JS Saver** tab in Burp.
-   - Choose your save directory (make sure it matches or points to the directory specified in VS Code).
-   - Toggle the **Enable** button to start intercepting JavaScript.
-   - Toggle the **Send to VS Code** button to enable real-time streaming, and ensure the port is matching (e.g., `7777`).
-
-3. **Start Grepping**:
-   - Configure your browser to proxy through Burp Suite (or use Burp's built-in browser).
-   - Navigate to any web application.
-   - Watch the captured, beautified scripts populate your VS Code workspace and sidebar tree-view in real-time!
-   - Perform a global search (`Cmd+Shift+F`) inside VS Code to quickly grep for API routes, tokens, endpoints, or hidden logic across all collected files.
+1. In Burp Suite, open the **JS Saver** tab, choose a directory to save scripts, and enable both **Enable** and **Send to VS Code**.
+2. In VS Code, verify the **JS Grepper** listener is running (default port is `7777`).
+3. Browse websites using Burp's browser. JavaScript resources will automatically populate in your VS Code sidebar and workspace in real-time.
 
 ---
 
