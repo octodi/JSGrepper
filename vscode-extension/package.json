@@ -1,0 +1,62 @@
+{
+  "name": "js-grepper",
+  "displayName": "JS Grepper",
+  "description": "Real-time JavaScript capture from Burp Suite — files land in your workspace for search & AI",
+  "version": "0.2.0",
+  "publisher": "local",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [{
+        "id": "js-grepper-container",
+        "title": "JS Grepper",
+        "icon": "./icon.svg"
+      }]
+    },
+    "views": {
+      "js-grepper-container": [{
+        "id": "jsGrepper.fileTree",
+        "name": "Captured Scripts"
+      }]
+    },
+    "commands": [
+      { "command": "jsGrepper.startServer",  "title": "Start Listener",  "icon": "$(play)",        "category": "JS Grepper" },
+      { "command": "jsGrepper.stopServer",   "title": "Stop Listener",   "icon": "$(debug-stop)",  "category": "JS Grepper" },
+      { "command": "jsGrepper.clearFiles",   "title": "Clear Index",     "icon": "$(clear-all)",   "category": "JS Grepper" },
+      { "command": "jsGrepper.openFolder",   "title": "Open Session Folder", "icon": "$(folder-opened)", "category": "JS Grepper" },
+      { "command": "jsGrepper.openFile",     "title": "Open Script",                               "category": "JS Grepper" },
+      { "command": "jsGrepper.toggleServer", "title": "Toggle Listener",                           "category": "JS Grepper" }
+    ],
+    "menus": {
+      "view/title": [
+        { "command": "jsGrepper.startServer", "when": "view == jsGrepper.fileTree", "group": "navigation@1" },
+        { "command": "jsGrepper.stopServer",  "when": "view == jsGrepper.fileTree", "group": "navigation@2" },
+        { "command": "jsGrepper.openFolder",  "when": "view == jsGrepper.fileTree", "group": "navigation@3" },
+        { "command": "jsGrepper.clearFiles",  "when": "view == jsGrepper.fileTree", "group": "navigation@4" }
+      ]
+    },
+    "configuration": {
+      "title": "JS Grepper",
+      "properties": {
+        "jsGrepper.port": {
+          "type": "number",
+          "default": 7777,
+          "description": "Port the listener binds on (match this in the Burp JS Saver tab)"
+        },
+        "jsGrepper.sessionDir": {
+          "type": "string",
+          "default": "~/js-grepper",
+          "description": "Folder where captured JS files are saved. Auto-added to workspace so search and AI agents can read them."
+        },
+        "jsGrepper.autoOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically open each captured JS file in the editor as it arrives"
+        }
+      }
+    }
+  }
+}

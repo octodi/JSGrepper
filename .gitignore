@@ -1,0 +1,27 @@
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Java compilation & build artifacts
+*.class
+/out/
+/unpack/
+
+# Packaged extension binaries (fat JAR and VSIX)
+/JsSaver.jar
+/vscode-extension/js-grepper-*.vsix
+
+# Editor-specific folders and cache
+.vscode/
+.jython_cache/
+__pycache__/
+*.pyc
+
+# Local runtime data folders (where captured JavaScript files might be saved)
+js_saved/
+js-grepper/
